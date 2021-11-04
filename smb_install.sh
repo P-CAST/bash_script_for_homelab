@@ -20,9 +20,10 @@ echo "PASS: create directory\n"
 
 # mount drive
 lsblk
-
 echo "\nselect disk to mount"
 read DiskName
+sudo mkfs.ext4 /dev/$DiskName
+sudo mount -t auto /dev/$DiskName /nas
 echo "PASS:mount $DiskName to /nas successful\n"
 
 # edit Samba config
@@ -32,7 +33,7 @@ read ServerName
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bck
 sudo rm /etc/samba/smb.conf
 sudo cp /etc/samba/smb.conf.bck /etc/samba/smb.conf
-echo "config file backup at /etc/samba/smb.conf.bck\n"
+echo "config file backup at /etc/samba/smb.conf.bck"
 sudo echo -en "[$ServerName]\npath=/nas\nbrowseable=yes\nread only=no\nwriteable=yes\ncreate mask=0777\ndirectory mask=0777\npublic=no\nforce user=root" >> /etc/samba/smb.conf
 echo "PASS: edit Samba config\n"
 
