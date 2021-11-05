@@ -1,6 +1,12 @@
 #!/bin/bash
 shopt -s xpg_echo
 
+# check if run with sudo
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 # update & upgrade
 sudo apt-get -qq update && sudo apt-get upgrade -y > /dev/null 2>&1
 echo "PASS: update & upgrade linux package"
