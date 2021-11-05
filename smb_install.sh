@@ -2,15 +2,15 @@
 shopt -s xpg_echo
 
 # update & upgrade
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y > /dev/null
 echo "PASS: update & upgrade linux package\n"
 
 # install NTFS & exFat
-sudo apt-get install ntfs-3g exfat-utils exfat-fuse -y
+sudo apt-get install ntfs-3g exfat-utils exfat-fuse -y > /dev/null
 echo "PASS: install NTFS & exFat support\n"
 
 # install Samba
-sudo apt-get install samba samba-common-bin -y
+sudo apt-get install samba samba-common-bin -y > /dev/null
 echo "PASS: install Samba\n"
 
 # create Samba directory
@@ -19,10 +19,10 @@ sudo chmod 777 /nas
 echo "PASS: create directory\n"
 
 # mount drive
-lsblk
-echo "\nselect disk to mount"
+lsblk -nd --output name,size
+echo "\nselect disk to use *choose wrong drive can cause system failure*"
 read DiskName
-sudo mkfs.ext4 /dev/$DiskName
+sudo mkfs.ext4 /dev/$DiskName > /dev/null
 sudo mount -t auto /dev/$DiskName /nas
 echo "PASS:mount $DiskName to /nas successful\n"
 
@@ -38,7 +38,7 @@ sudo echo -en "[$ServerName]\npath=/nas\nbrowseable=yes\nread only=no\nwriteable
 echo "PASS: edit Samba config\n"
 
 # add user to Samba
-echo "What's username you want to connect with"
+echo "enter username you want to connect with"
 read UserName
 sudo adduser $UserName
 
