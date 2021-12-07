@@ -1,6 +1,6 @@
 # Bash script to automate install/setup process (for Debian-based linux only)
-- [QEMU guest agent](https://github.com/P-CAST/bash_script_for_homelab/new/main?readme=1#qemu-guest-agent-install)
-- [Samba](https://github.com/P-CAST/bash_script_for_homelab/new/main?readme=1#samba-installsetup-explain)
+- [QEMU guest agent](https://github.com/P-CAST/bash_script_for_homelab#qemu-guest-agent-install)
+- [Samba](https://github.com/P-CAST/bash_script_for_homelab#samba-installsetup-explain)
 
 ---
 
